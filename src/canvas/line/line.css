@@ -9,13 +9,16 @@
   font-size:18px;
 }
 
-
 .content{
-  width:97%;
+  width:auto%;
   padding-left:1%;
 }
 
+.content:focus{
+  border: 1px solid grey;
+}
+
 .index{
-  width:3%;
+  width:10%;
   text-align:right;
 }

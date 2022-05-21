@@ -1,19 +1,12 @@
 import "./line.css";
 import { createSignal, Index } from 'solid-js';
+import { handleKeypress } from './../canvas'
 
 export default function Line(props) {
-  const[key, setKey] = createSignal("");
-
-  function handleKeypress(event) {
-    console.log(event.code);
-    setKey(event.code);
-  }
-
   return (
-    <><div class="line" ref={props.ref} command={key()}>
+    <><div class="line">
       <span class="index">{props.index}</span>
-      <span class="content" contenteditable="true"
-      onKeypress={handleKeypress}>{props.content}</span>
+      <span class="content" onKeypress={handleKeypress} contenteditable="true">{props.content}</span>
     </div></>
   );
 }

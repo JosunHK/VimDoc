@@ -3,29 +3,26 @@ import { createSignal, Index } from 'solid-js';
 import "./canvas.css";
 import Line from './line/line'
 
+const[key, setKey] = createSignal("");
+const[lines, setLines] = createSignal([
+  {index: 1, content: ""},
+]);
+
 export default function Canvas() {
 
-  let key;
-
-  const[lines, setLines] = createSignal([
-    {index: 1, content: "bruh"},
-    {index: 2, content: "Hello"},
-    {index: 3, content: "world"},
-    {index: 4, content: "!"}
-  ]);
-
-
-  
 
   return (
     <>
     <div class="canvas">
       <For each={lines()}>{(line, i) =>
-        <Line ref={key} index={line.index} content={line.content}/>
+        <Line index={line.index} content={line.content}/>
       }</For>
     </div>
-    <div>{key.command}</div>
     </>
   );
 }
 
+export function handleKeypress(event) {
+  setKey(event.code);
+  setLines([...lines(), {index: lines().length + 1, content : ""}]);
+}
