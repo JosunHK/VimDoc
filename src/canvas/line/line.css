@@ -12,10 +12,11 @@
 .content{
   width:auto%;
   padding-left:1%;
+  caret-color: white;
 }
 
-.content:focus{
-  border: 1px solid grey;
+.line:focus{
+  border:1px solid white;
 }
 
 .index{

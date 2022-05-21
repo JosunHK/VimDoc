@@ -23,6 +23,7 @@ export default function Canvas() {
 }
 
 export function handleKeypress(event) {
+  event.preventDefault();
   setKey(event.code);
   setLines([...lines(), {index: lines().length + 1, content : ""}]);
 }
