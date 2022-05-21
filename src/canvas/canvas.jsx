@@ -14,12 +14,15 @@ export default function Canvas() {
     {index: 4, content: "!"}
   ]);
 
+
+  
+
   return (
     <>
     <div class="canvas">
-      <Index each={lines()}>{(line, i) =>
-        <Line ref={key} index={line().index} content={line().content}/>
-      }</Index>
+      <For each={lines()}>{(line, i) =>
+        <Line ref={key} index={line.index} content={line.content}/>
+      }</For>
     </div>
     <div>{key.command}</div>
     </>
