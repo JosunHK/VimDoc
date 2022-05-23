@@ -44,7 +44,7 @@ function indentEvent(event){
   let id = event.target.id * 1 - 1;
   let line = lines()[id];
   let lineContent = line.content;
-  line.content = "    " + line.content;
+  line.content = "<br/><br/><br/><br/>" + line.content;
   lines()[id] = line;
   console.log(lines()[id]);
   setLines(lines());
@@ -62,18 +62,17 @@ export default function Canvas() {
   );
 }
 
-export function handleChange(event){
-  console.log("change");
+export function updateContent(event){
   let content = event.target.innerHTML;
-  let id = event.target.id;
+  let id = event.target.id *1 - 1;
   let line = lines()[id];
   line.content = content;
   lines()[id] = line;
-  console.log(lines()[id]);
   setLines(lines());
 }
 
 export function handleKeypress(event) {
+  updateContent(event);
   if(event.code === 'Enter'){
     newLineEvent(event);
   }
@@ -92,3 +91,4 @@ export function handleKeydown(event) {
     indentEvent(event);
   }
 }
+

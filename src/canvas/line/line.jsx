@@ -1,6 +1,6 @@
 import "./line.css";
 import { createSignal, Index } from 'solid-js';
-import { handleKeypress, handleKeydown, handleChange} from './../canvas'
+import { handleKeypress, handleKeydown} from './../canvas'
 
 export default function Line(props) {
 
@@ -10,7 +10,6 @@ export default function Line(props) {
       <span class="content" id={props.index}
         onKeypress={handleKeypress}
         onKeydown={handleKeydown}
-        onChange={handleChange}
         contenteditable="true">
         {props.content}
       </span>
