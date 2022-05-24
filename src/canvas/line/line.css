@@ -2,24 +2,29 @@
   border:none;
   background-color: #3c3836;
   margin:0px;
-  padding:0px;
+  padding:4px;
   width:100%;
   white-space: nowrap;
   max-height:18px;
   font-size:18px;
+  display:flex;
 }
 
 .content{
-  width:auto%;
+  width:96%;
   padding-left:1%;
   caret-color: white;
 }
 
-.line:focus{
-  border:1px solid white;
+.content:focus-visible{
+  outline: none; 
+}
+
+.line:focus-within{
+  outline: 1px solid grey;
 }
 
 .index{
-  width:10%;
+  width:4%;
   text-align:right;
 }

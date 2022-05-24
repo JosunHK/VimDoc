@@ -41,13 +41,7 @@ function lineDownEvent(event){
 
 function indentEvent(event){
   event.preventDefault();
-  let id = event.target.id * 1 - 1;
-  let line = lines()[id];
-  let lineContent = line.content;
-  line.content = "<br/><br/><br/><br/>" + line.content;
-  lines()[id] = line;
-  console.log(lines()[id]);
-  setLines(lines());
+  event.target.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;" + event.target.innerHTML;
 }
 //commands
 export default function Canvas() {
@@ -72,13 +66,14 @@ export function updateContent(event){
 }
 
 export function handleKeypress(event) {
-  updateContent(event);
+  console.log(event.code)
   if(event.code === 'Enter'){
     newLineEvent(event);
   }
 }
 
 export function handleKeydown(event) {
+  console.log(event.code)
   if(event.code === 'ArrowUp'){
     lineUpEvent(event);
   }
