@@ -1,11 +1,11 @@
-import { render } from 'solid-js/web';
+import { innerHTML, render } from 'solid-js/web';
 import { createSignal, Index } from 'solid-js';
 import "./canvas.css";
 import Line from './line/line'
 
 const[key, setKey] = createSignal("");
 const[lines, setLines] = createSignal([
-  {content: ""},
+  {content: <><span style='color:red'>test</span><span style='color:blue'>test</span></>},
 ]);
 
 //TODO: moves to another class
@@ -41,9 +41,24 @@ function lineDownEvent(event){
 
 function indentEvent(event){
   event.preventDefault();
-  event.target.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;" + event.target.innerHTML;
+
+  console.log(event.target);
+
+  //init
+  let indent = <span class="tab">&nbsp;&nbsp;&nbsp;&nbsp;</span>;
+  console.log(indent);
+  let element = event.target;
+  let range = document.createRange();
+  let selection = window.getSelection();
+  let currPos = selection.anchorOffset * 1;
+  let content = event.target.innerHTML;
+  let modifiedString = "";
+
+  //modify the innerHTML to add tabspace after the cursor, different handling for end of line;
+
 }
 //commands
+
 export default function Canvas() {
   return (
     <>
