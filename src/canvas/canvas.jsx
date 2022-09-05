@@ -1,5 +1,5 @@
 import { innerHTML, render } from 'solid-js/web';
-import { createSignal, Index } from 'solid-js';
+import { createSignal, onMount, Index } from 'solid-js';
 import "./canvas.css";
 import Line from './line/line'
 
@@ -20,6 +20,16 @@ const [lines, setLines] = createSignal([
 
 let mode = 0;
 
+function addEventListenerForSpan(element){
+    element.addEventListener("keydown", function (event) {
+      handleKeydown(event);
+    });
+
+    element.addEventListener("keypress", function (event) {
+      handleKeypress(event);
+  });
+}
+
 //TODO: moves to another class
 //commands
 function moveCaret(window, fromEle, toEle) {
@@ -32,7 +42,10 @@ function newLineEvent(event) {
   setLines([...lines(), { content: "" }]);
   const fromEle = event.target;
   const toEle = document.getElementById(fromEle.id * 1 + 1);
+  const newEle = document.getElementById(lines().length);
+  console.log(lines().length);
   moveCaret(window, fromEle, toEle);
+  addEventListenerForSpan(newEle);
 }
 
 function lineUpEvent(event) {
@@ -44,13 +57,20 @@ function lineUpEvent(event) {
 }
 
 function moveCaretRight(event) {
+  console.log("move right event")
   event.preventDefault();
   let ele = event.target;
-  if (typeof ele.createTextRange != "undefined") {
-        ele.focus();
-        var range = ele.createTextRange();
-        range.collapse(false);
-        range.select();
+  console.log(ele);
+
+  if (typeof ele.selectionStart == "number") {
+    console.log("bruh1");
+    ele.selectionStart = ele.selectionEnd = 2;
+  } else if (typeof ele.createTextRange != "undefined") {
+    console.log("bruh2");
+    ele.focus();
+    var range = ele.createTextRange();
+    range.collapse(false);
+    range.select();
   }
 }
 
@@ -84,6 +104,21 @@ function indentEvent(event) {
 //commands
 
 export default function Canvas() {
+
+  onMount(async () => {
+    //add event listener to all loaded span
+    var seletor = document.querySelectorAll("span");
+    seletor.forEach((element) => {
+      element.addEventListener("keydown", function (event) {
+        handleKeydown(event);
+      });
+
+      element.addEventListener("keypress", function (event) {
+        handleKeypress(event);
+      });
+    });
+  });
+
   return (
     <>
       <div class="canvas">
@@ -105,7 +140,6 @@ export function updateContent(event) {
 }
 
 export function handleKeypress(event) {
-  console.log(event.code)
   if(mode !== INSERT_MODE)
     event.preventDefault();
 

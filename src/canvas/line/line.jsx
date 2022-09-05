@@ -8,8 +8,8 @@ export default function Line(props) {
     <><div class="line">
       <span class="index">{props.index}</span>
       <span class="content" id={props.index}
-        onKeypress={handleKeypress}
-        onKeydown={handleKeydown}
+        // onKeypress={handleKeypress}
+        // onKeydown={handleKeydown}
         contenteditable="true">
         {props.content}
       </span>
