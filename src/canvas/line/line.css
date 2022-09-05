@@ -14,6 +14,7 @@
   width:96%;
   padding-left:1%;
   caret-color: white;
+  text-align:top;
 }
 
 .content:focus-visible{
