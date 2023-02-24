@@ -7,7 +7,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "Bruh",
+    "productName": "bruh",
     "version": "0.1.0"
   },
   "tauri": {
@@ -29,7 +29,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "Bruh",
+      "identifier": "bruh",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -56,10 +56,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 1920,
         "resizable": true,
-        "title": "Bruh",
-        "width": 800
+        "title": "VimDoc",
+        "width": 1080
       }
     ]
   }

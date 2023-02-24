@@ -12,9 +12,29 @@ const [lines, setLines] = createSignal([
   {
     content: 
     <>
-      <span style='color:red'>test&nbsp;</span>
-      <span style='color:blue'>test</span>
+      This are the preliminary testing results
     </>
+  },
+  {
+    content:
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4a/CityU_logo.svg/2560px-CityU_logo.svg.png" width="10%"/>
+  },
+  {
+    content: 
+    <>
+    </>
+  },
+  {
+    content: 
+      <span style="color:red;">
+        Colored
+      </span>
+  },
+  {
+    content: 
+      <span style="color:lightblue;">
+        Text 
+      </span>
   },
 ]);
 
@@ -56,22 +76,29 @@ function lineUpEvent(event) {
   moveCaret(window, fromEle, toEle);
 }
 
+function moveCaretLeft(event){
+  //Prevents WebView's Default action
+  event.preventDefault();
+
+  //get target element
+  let ele = event.target;
+
+  //manually manipulate the position of the caret
+  let caret = new VanillaCaret(ele); // Initialize
+  let currentPos = caret.getPos();
+  let toPos = currentPos - 1;
+  if(toPos < 0 ) toPos = 0;
+  caret.setPos(toPos);
+}
+
 function moveCaretRight(event) {
-  console.log("move right event")
   event.preventDefault();
   let ele = event.target;
-  console.log(ele);
-
-  if (typeof ele.selectionStart == "number") {
-    console.log("bruh1");
-    ele.selectionStart = ele.selectionEnd = 2;
-  } else if (typeof ele.createTextRange != "undefined") {
-    console.log("bruh2");
-    ele.focus();
-    var range = ele.createTextRange();
-    range.collapse(false);
-    range.select();
-  }
+  let caret = new VanillaCaret(ele); // Initialize
+  let currentPos = caret.getPos();
+  let toPos = currentPos + 1;
+  if(toPos >  ele.innerHTML.length) return; 
+  caret.setPos(toPos);
 }
 
 function lineDownEvent(event) {
@@ -149,12 +176,14 @@ export function handleKeypress(event) {
 }
 
 export function handleKeydown(event) {
-  console.log(event.code)
-  if (event.code === 'ArrowUp' || event.code === 'KeyK') {
+  console.log(event.code);
+  console.log(event.keyCode);
+  console.log(event);
+  if (event.code === 'ArrowUp' || (mode !== INSERT_MODE && event.code === 'KeyK')) {
     lineUpEvent(event);
   }
 
-  if (event.code === 'ArrowDown' || event.code === 'KeyJ') {
+  if (event.code === 'ArrowDown' || (mode !== INSERT_MODE && event.code === 'KeyJ')) {
     lineDownEvent(event);
   }
 
@@ -167,11 +196,15 @@ export function handleKeydown(event) {
   }
 
   if (event.code === 'KeyI') {
+    event.preventDefault();
     mode = INSERT_MODE;
   }
 
   if(event.code === 'KeyL'){
     moveCaretRight(event);
   }
-}
 
+  if(event.code === 'KeyH'){
+    moveCaretLeft(event);
+  }
+}

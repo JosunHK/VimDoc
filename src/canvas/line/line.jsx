@@ -1,8 +1,12 @@
 import "./line.css";
-import { createSignal, Index } from 'solid-js';
+import { createSignal, onMount, Index } from 'solid-js';
 import { handleKeypress, handleKeydown} from './../canvas'
 
 export default function Line(props) {
+
+  onMount(async () => {
+    document.getElementById(props.index).focus();
+  });
 
   return (
     <><div class="line">

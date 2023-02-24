@@ -8,6 +8,8 @@
   max-height:18px;
   font-size:18px;
   display:flex;
+  color:white;
+  font-weight: 300;
 }
 
 .content{
