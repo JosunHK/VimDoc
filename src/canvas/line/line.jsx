@@ -9,13 +9,10 @@ export default function Line(props) {
   });
 
   return (
-    <><div class="line">
-      <span class="index">{props.index}</span>
-      <span class="content" id={props.index}
-        // onKeypress={handleKeypress}
-        // onKeydown={handleKeydown}
+    <><div class={props.mode === 0 ? "line normal-line" : "line"}>
+      <span class="index no-print">{props.index}</span>
+      <span class="content" style="color:white;font-size:19px;" innerHTML={props.content} id={props.index}
         contenteditable="true">
-        {props.content}
       </span>
     </div></>
   );

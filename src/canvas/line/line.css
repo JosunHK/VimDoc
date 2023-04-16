@@ -5,7 +5,6 @@
   padding:4px;
   width:100%;
   white-space: nowrap;
-  max-height:18px;
   font-size:18px;
   display:flex;
   color:white;
@@ -17,6 +16,7 @@
   padding-left:1%;
   caret-color: white;
   text-align:top;
+  height:max-content;
 }
 
 .content:focus-visible{
@@ -25,6 +25,11 @@
 
 .line:focus-within{
   outline: 1px solid grey;
+}
+
+.normal-line:focus-within{
+  outline: 1px solid grey;
+  background-color:rgba(255, 255, 255, 0.2);
 }
 
 .index{

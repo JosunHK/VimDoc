@@ -4,8 +4,80 @@
   background-color: #3c3836;
 }
 
-
 #root{
   height:100%;
   background-color: #3c3836;
+}
+
+.status-bar{
+  display:flex;
+  background-color: #3c3836;
+  position:fixed;
+  bottom:0%;
+  padding:0.2%;
+  border-top: 1px solid black;
+  width: 100%;
+  z-index:2;
+  font-size:1.25rem;
+}
+
+.mode-display{
+  padding-right:5%;
+}
+
+.command-display{
+  width:30%;
+  padding-right:5%;
+}
+
+.repeat-display{
+  padding-right:5%;
+}
+
+.error-display{
+  width:30%;
+}
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+
+#filler{
+  border:none;
+  background-color: #3c3836;
+  margin:0px;
+  padding:4px;
+  width:100%;
+  white-space: nowrap;
+  font-size:18px;
+  display:flex;
+  height:3%;
+  color:white;
+  font-weight: 300;
+}
+
+.titlebar {
+  height: 30px;
+  background: #329ea3;
+  user-select: none;
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.titlebar-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+.titlebar-button:hover {
+  background: #5bbec3;
 }
